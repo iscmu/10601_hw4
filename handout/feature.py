@@ -48,7 +48,6 @@ def load_feature_dictionary(file):
             glove_map[word] = np.array(embedding, dtype=float)
     return glove_map
 
-
 if __name__ == '__main__':
     # This takes care of command line argument parsing for you!
     # To access a specific argument, simply access args.<argument name>.
@@ -66,3 +65,34 @@ if __name__ == '__main__':
     parser.add_argument("test_out", type=str, 
                         help='path to output .tsv file to which the feature extractions on the test data should be written')
     args = parser.parse_args()
+
+    print(args)
+    data = load_tsv_dataset(args.train_input)
+    features = load_feature_dictionary(args.feature_dictionary_in)
+
+    output = []
+    labels = []
+
+    for i in data:
+        label, review = i
+        zero_vec =  np.array([0.0 for i in range(len(next(iter(features.values()))))])
+        vec = zero_vec
+        listofwords = review.split()
+        for w in listofwords:
+            vec += features.get(w, zero_vec)
+        output.append(vec / len(listofwords))
+        labels.append(label)
+    def convert_features(data_path, features_path):
+        
+    
+    
+    with open(args.train_out, 'w') as f:
+        for i in range(len(labels)):
+            f.write(f"{round(labels[i], 6):.6f}" + '\t')
+            for word in output[i]:
+                f.write(f"{word:.6f}" + '\t')
+            f.write('\n')
+
+
+
+    
