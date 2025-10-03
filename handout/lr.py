@@ -110,7 +110,7 @@ if __name__ == '__main__':
         write_result(f, y_pred_test)
     with open(args.metrics_out, 'w') as f:
         f.write("error(train): " + str(f"{tr_err:.6f}" + "\n"))
-        f.write("error(test): " + str(f"{test_err:.6f}" + "\n"))
+        f.write("error(test): " + str(f"{test_err:.6f}" + "\n")) 
 
 
     # # VERIFICATION 
