@@ -100,10 +100,9 @@ if __name__ == '__main__':
     Xtest = np.pad(Xtest, ((0, 0), (0, 1)), mode='constant', constant_values=1)
     y_pred_test = predict(theta, Xtest)
     test_err = compute_error(y_pred_test, ytest)
-
     def write_result(f, labels):
         for i in labels:
-            f.write(str(int(i)) + '\n')
+            f.write(str(1 * (i >= 0.5)) + '\n')
 
     with open(args.train_out, 'w') as f:
         write_result(f, y_pred)
@@ -114,8 +113,26 @@ if __name__ == '__main__':
         f.write("error(test): " + str(f"{test_err:.6f}" + "\n"))
 
 
-    # VERIFICATION 
-    
+    # # VERIFICATION 
+    # sample_train = load_tsv_dataset("/Users/iskandersergazin/CarngieMellonUniversity/10601/hw4/handout/largeoutput/sample_test_labels.txt")
+    # my_train = load_tsv_dataset("/Users/iskandersergazin/CarngieMellonUniversity/10601/hw4/handout/largeoutput/test_labels.txt")
+    # for i in range(len(sample_train)):
+    #     assert (sample_train[i] == my_train[i])
+    # sample_train = load_tsv_dataset("/Users/iskandersergazin/CarngieMellonUniversity/10601/hw4/handout/largeoutput/sample_train_labels.txt")
+    # my_train = load_tsv_dataset("/Users/iskandersergazin/CarngieMellonUniversity/10601/hw4/handout/largeoutput/train_labels.txt")
+    # for i in range(len(sample_train)):
+    #     assert (sample_train[i] == my_train[i])
+
+    # sample_train = load_tsv_dataset("/Users/iskandersergazin/CarngieMellonUniversity/10601/hw4/handout/smalloutput/sample_test_labels.txt")
+    # my_train = load_tsv_dataset("/Users/iskandersergazin/CarngieMellonUniversity/10601/hw4/handout/smalloutput/test_labels.txt")
+    # for i in range(len(sample_train)):
+    #     assert (sample_train[i] == my_train[i])
+
+    # sample_train = load_tsv_dataset("/Users/iskandersergazin/CarngieMellonUniversity/10601/hw4/handout/smalloutput/sample_train_labels.txt")
+    # my_train = load_tsv_dataset("/Users/iskandersergazin/CarngieMellonUniversity/10601/hw4/handout/smalloutput/train_labels.txt")
+    # for i in range(len(sample_train)):
+    #     assert (sample_train[i] == my_train[i])
+
 
 
 
